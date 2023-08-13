@@ -3,23 +3,36 @@ import useRunState from './reducer';
 import RunResult from './Run';
 import './App.css';
 
-function PreviousElements({ previousRuns }) {
+function PreviousElements({ previousRuns, dispatch }) {
   return (
     <div>
-      {_.map(previousRuns, (run, i) => <RunResult key={i} run={run} />)}
+      <h5>Past runs</h5>
+      {_.map(previousRuns, (run, i) => <RunResult key={i} run={run} dispatch={dispatch} />)}
     </div>
   );
 }
 
 function App() {
   const [state, dispatch] = useRunState();
+  const buttonDisabled = _.isEmpty(state.run);
   return (
     <div className="App">
-      <PreviousElements  previousRuns={state.previousRuns} />
       <div>
-      <textarea className="repl" onChange={(e) => dispatch({ type: 'updateText', payload: e.target.value })} value={state.run} />
+        <textarea
+          className="repl"
+          onChange={(e) => dispatch({ type: 'updateText', payload: e.target.value })}
+          value={state.run}
+        />
       </div>
-      <button type="button" onClick={() => dispatch({ type: 'addRun' })}>Run!</button>
+      <div>
+        <button disabled={buttonDisabled} onClick={() => dispatch({ type: 'updateText', payload: '' })}>
+          Clear
+        </button>
+        <button disabled={buttonDisabled} onClick={() => dispatch({ type: 'addRun' })}>
+          Run!
+        </button>
+      </div>
+      <PreviousElements  previousRuns={state.previousRuns} dispatch={dispatch} />
     </div>
   );
 }

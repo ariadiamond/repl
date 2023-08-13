@@ -1,21 +1,39 @@
 .run-result {
   display: flex;
+  justify-content: space-between;
   text-align: left;
+  padding: 10px;
 }
 .run-result__source,
 .run-result__result,
 .run-result__error {
-  width: 50%;
+  width: 45%;
 }
 .run-result h5 {
   margin: 0px;
 }
+.run-result:nth-child(odd) {
+  background-color: #F4F4F4;
+}
 
-.run-result__source pre {
+/* source */
+.run-result pre {
   margin: 2px;
   padding: 5px;
   border: 1px solid #C7C7C7;
+  overflow-x: auto;
 }
+
+/* error */
 .run-result__error h5 {
-  color: #B2A4FF;
+  color: #F7C8E0;
+}
+.run-result__error td {
+  width: 50%;
+}
+.run-result__error__name {
+  color: #B4E4FF;
+}
+.run-result__error__message {
+  color: #95BDFF;
 }

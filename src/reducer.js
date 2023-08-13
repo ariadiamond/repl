@@ -13,6 +13,7 @@ function reducer(state, action) {
   let run;
   let runs;
   switch(action.type) {
+    case 'repopulate':
     case 'updateText':
       return { ...state, run: action.payload };
     case 'addRun':
@@ -20,8 +21,8 @@ function reducer(state, action) {
         return state;
       }
       run = { source: state.run, ...evalCode(state.run) };
-      runs = _.concat(state.previousRuns, run);
-      return { run: '', previousRuns: _.takeRight(runs, PREV_RUN_COUNT) };
+      runs = _.concat([run], state.previousRuns);
+      return { run: '', previousRuns: _.take(runs, PREV_RUN_COUNT) };
     default:
       console.error("Unknown action:", action);
       return state;

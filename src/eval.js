@@ -4,14 +4,14 @@
  * and adding strict mode
  */
 function evalCode(src) {
-  let res = null;
+  let result = null;
   try {
     // run in global scope, prevent a couple attacks
-    res = eval?.('"use strict";\n' + src);
+    result = eval?.('"use strict";\n' + src);
   } catch(e) {
-    return { error: e, res };
+    return { error: e, result };
   }
-  return { error: null, res };
+  return { error: null, result };
 }
 
 export default evalCode;

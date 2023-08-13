@@ -7,7 +7,7 @@ const INIT_STATE = {
   previousRuns: [],
 };
 
-const PREV_RUN_COUNT = 10;
+const PREV_RUN_COUNT = 5;
 
 function reducer(state, action) {
   let run;
@@ -19,7 +19,7 @@ function reducer(state, action) {
       if (_.isEmpty(state.run)) {
         return state;
       }
-      run = { run: state.run, result: evalCode(state.run) };
+      run = { source: state.run, ...evalCode(state.run) };
       runs = _.concat(state.previousRuns, run);
       return { run: '', previousRuns: _.takeRight(runs, PREV_RUN_COUNT) };
     default:

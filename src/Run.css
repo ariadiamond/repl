@@ -1,0 +1,21 @@
+.run-result {
+  display: flex;
+  text-align: left;
+}
+.run-result__source,
+.run-result__result,
+.run-result__error {
+  width: 50%;
+}
+.run-result h5 {
+  margin: 0px;
+}
+
+.run-result__source pre {
+  margin: 2px;
+  padding: 5px;
+  border: 1px solid #C7C7C7;
+}
+.run-result__error h5 {
+  color: #B2A4FF;
+}

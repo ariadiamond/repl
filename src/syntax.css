@@ -1,0 +1,7 @@
+.true, .false { color: #3d9ff5; }
+.num { color: #3dc0a8; }
+.string { color: #42bc26; }
+.function { color: #80cd40; }
+.name { color: #fca080; }
+.return { color: #f56060; }
+.null { color: #cc6080; }

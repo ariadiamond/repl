@@ -1,4 +1,15 @@
 .App {
   text-align: center;
 }
-
+.repl {
+  width: 40em;
+  height: 10em;
+  font-size: 14px;
+  margin: 10px;
+}
+button {
+  background-color: #FFDEB4;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+}

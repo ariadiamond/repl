@@ -20,7 +20,7 @@ function App() {
       <div className="text-area">
         <textarea
           className="repl"
-          placeholder="Write JavaScript code here!"
+          placeholder={`Write JavaScript code here!\nBe inspired by ${state.theme} (if you'd like)`}
           onChange={(e) => dispatch({ type: 'updateText', payload: e.target.value })}
           value={state.run}
         />

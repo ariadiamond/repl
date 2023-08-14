@@ -1,12 +1,12 @@
 import _ from 'lodash';
 import { useState } from 'react';
 
-const boolean = 'A true or false value. As we will later see, this will be key to contidionals';
+const boolean = 'A true or false value. As we will see, this will be key to contidionals';
 const array = 'A list of values. Values can be of any type (including Arrays!), and do not have to match. Keys for accessing a particular value are 0, 1, 2...(number of values - 1)';
 const dictionary = {
   // types
   string: 'A unit of text',
-  num: 'A number',
+  num: 'A number, potentially including with fractional values and/or negative values. At absurd precision and massive scale, this ends up approximating',
   true: boolean,
   false: boolean,
   null: 'An explicitly unset value. This means that someone decided this value should not be defined.',
@@ -27,12 +27,14 @@ const dictionary = {
   switch: '',
   case: '',
   if: 'Our code block for only running code under certain circumstances. If the expression in our if clause returns true (ish), we execute this code',
-  else: 'A code block for running code when our if clause is false (ish). If we aren\'t running code in the true block, we are running the code in the false block.',
+  else: 'A code block for when our if clause is false (ish). If we aren\'t running code in the true block, we are running the code in the false block.',
   // conditionals: comparators
   '==/!=/===/!==': 'Our first comparitor that checks if to values are the same. With more complex values like arrays, equality gets more finicky, and checking ',
+  // functions
+  return: 'One possible action of a function. Sends the value back to whoever called the function.',
   // errors
   SyntaxError: 'This usually means that the code is not properly written JavaScript. Double check your code for any mistakes (they happen to the best of us!)',
-  ReferenceError: 'This is usually related to a variable being undefined. Double check that the variable name isn\'t misspelled or anything',
+  ReferenceError: 'This is usually related to a variable being undefined. Double check that the variable name isn\'t misspelled',
   TypeError: 'This is a fun error! It can be caused by a decent number of things, such as trying to redefine a constant.'
 };
 

@@ -9,8 +9,10 @@
 .null { color: #cc6080; }
 .array { color: #f270ca; }
 .object { color: #2492eb; }
+.if { color: #dc60df; }
+.else { color: #6300CC; }
 
-/* Really for highlightable token, but it's fine to be here*/
+/* Really for highlightable token, but it's fine to be here */
 .hover {
   position: absolute;
   background-color: white;

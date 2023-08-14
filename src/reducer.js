@@ -29,10 +29,10 @@ function reducer(state, action) {
   }
 }
 
-const THEMES = ['fruits', 'animals', 'favorite music'];
+const THEMES = ['fruits', 'animals', 'favorite albums', 'deep sea creatures', 'plants', 'high fashion', 'desserts', 'groceries'];
 
 function useRunState() {
-  const theme = useMemo(() => THEMES[_.random(0, _.size(THEMES))], []);
+  const theme = useMemo(() => THEMES[_.random(0, _.size(THEMES) - 1)], []);
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
   return [{ ...state, theme }, dispatch];
 }

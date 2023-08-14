@@ -19,21 +19,11 @@ function PrintError(props) {
   const { error } = props;
   return (
     <div className="run-result__error">
-      <h5>Error:</h5>
-      <table>
-        <tbody>
-          <tr>
-            <td>Name:</td>
-            <td className="run-result__error__name">
-              <HighlightableToken label={error.name} text={error.name} />
-            </td>
-          </tr>
-          <tr>
-            <td>Message:</td>
-            <td className="run-result__error__message">{error.message}</td>
-          </tr>
-        </tbody>
-      </table>
+      <h4>Error:</h4>
+      <span className="run-result__error__name">
+        <HighlightableToken label={error.name} text={error.name} />
+      </span>
+      <span className="run-result__error__message">{error.message}</span>
     </div>
   );
 }
@@ -50,7 +40,7 @@ function getOutput(result) {
     case 'undefined':
       return <HighlightableToken text="undefined" label="undefined" />;
     case 'function':
-      return <span className="function">function</span>;
+      return <HighlightableToken text="function" label="function" />;
     case 'object':
       if (_.isArray(result)) {
         return (
@@ -71,6 +61,7 @@ function getOutput(result) {
           </>
         );
       }
+    // fallthrough
     default:
       return 'Not sure how to display this';
   }

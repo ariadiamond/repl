@@ -1,18 +1,22 @@
 # repl
-Webapp using JavaScript's "eval" to run code
+A webpage that runs JavaScript locally using `eval`
 
 ## Use of `eval`
-[eval](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#never_use_eval!)
-
+`eval` is a largely disliked function in JavaScript because of the danger it poses to the browser
+(and person) running it. I don't believe we run into many of the issues that commonly plague eval:
+- This is a front-end only application, meaning we can't do XSS because there is no communication
+  with a server.
+- Injection via URLs has to be explicitly written out (ie someone has to go to a URL with this
+  hosted) and then copy in code to get the URL.
+- This is not being used in privileged environments (ie there are no cookies or auth keys stored).
+- Client side `eval` is similar to opening the developer console and running code there. With this,
+  we are succeptible to the same kinds of attacks (provided with slightly easier access).
 
 
 ## Sources
-- [Error colors](https://colorhunt.co/palette/f7c8e0dfffd8b4e4ff95bdff)
+- [Error colors](https://colorhunt.co/palette/00425a1f8a70bfdb38fc7300)
 - [General colors](https://colorhunt.co/palette/b2a4ffffb4b4ffdeb4fdf7c3)
 
 #### Tools
-- [acorn parser](https://github.com/acornjs/acorn/tree/master/acorn)
-<!--
- - https://colorhunt.co/palette/2a39909c254dd23369f06292
- - https://colorhunt.co/palette/2414689f0d7fea1179f79bd3
- -->
+- [Create React App](https://create-react-app.dev/) - getting a react up off the ground quickly
+- [acorn parser](https://github.com/acornjs/acorn/tree/master/acorn) - syntax highlighting

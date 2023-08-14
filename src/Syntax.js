@@ -27,8 +27,8 @@ function Syntax({ source }) {
   try {
     tokens = [...tokenizer(source, { ecmaVersion: 'latest' })];
   } catch(e) {
-    console.error(e);
-    return null;
+    // we failed to parse, so no syntax highlighting, but we can still display source
+    return source;
   }
   return <WriteToken src={source} tokens={_.reverse(tokens)} />;
 }

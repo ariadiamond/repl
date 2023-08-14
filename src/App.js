@@ -7,7 +7,7 @@ function PreviousElements({ previousRuns, dispatch }) {
   return (
     <div className="previous-runs">
       {!_.isEmpty(previousRuns) && <h5>Past runs</h5>}
-      {_.map(previousRuns, (run, i) => <RunResult key={i} run={run} dispatch={dispatch} />)}
+      {_.map(previousRuns, (run) => <RunResult key={run.key} run={run} dispatch={dispatch} />)}
     </div>
   );
 }

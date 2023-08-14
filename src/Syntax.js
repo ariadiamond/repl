@@ -1,14 +1,7 @@
 import _ from 'lodash';
 import { tokenizer } from 'acorn';
+import HighlightableToken, { terms } from './HighlightableToken';
 import './syntax.css';
-
-const skipTokens = ['(', ')', '{', '}', ';', '<<', '>>', '=', '>=', '<='];
-
-const dictionary = {
-  string: '',
-  num: '',
-  // true, false are for boolean
-};
 
 function WriteToken(props) {
   const { tokens, src } = props;
@@ -17,13 +10,13 @@ function WriteToken(props) {
   const start = src.slice(0, t.start);
   const middle = src.slice(t.start, t.end);
   const end = src.slice(t.end);
-  const highlightLabel = !_.includes(skipTokens, t.type.label);
+  const highlightLabel = _.includes(terms, t.type.label);
   return (
     <>
       <WriteToken tokens={rest} src={start} />
       {highlightLabel
-        ? <span className={t.type.label}>{middle}</span>
-        : middle}
+        ? <HighlightableToken label={t.type.label} text={middle} />
+        : <span className={t.type.label}>{middle}</span>}
       {end}
     </>
   );

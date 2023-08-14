@@ -1,7 +1,26 @@
-.true, .false { color: #3d9ff5; }
-.num { color: #3dc0a8; }
+.boolean { color: #3d9ff5; }
+.number { color: #3dc0a8; }
 .string { color: #42bc26; }
 .function { color: #80cd40; }
-.name { color: #fca080; }
+.variable { color: #fca080; }
+.const { color: #10dda0; }
 .return { color: #f56060; }
+.undefined { color: #c162fc; }
 .null { color: #cc6080; }
+.array { color: #f270ca; }
+.object { color: #2492eb; }
+
+/* Really for highlightable token, but it's fine to be here*/
+.hover {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #C7C7C7;
+  border-radius: 2px;
+  margin-top: 10px;
+  padding: 4px;
+}
+.hover p {
+  color: #4F4F4F;
+  max-width: 30em;
+  white-space: break-spaces;
+}

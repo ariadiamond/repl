@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import evalCode from './eval';
-import { useReducer } from 'react';
+import { useMemo, useReducer } from 'react';
 
 const INIT_STATE = {
   run: '',
@@ -20,7 +20,7 @@ function reducer(state, action) {
       if (_.isEmpty(state.run)) {
         return state;
       }
-      run = { source: state.run, ...evalCode(state.run) };
+      run = { source: state.run, ...evalCode(state.run), key: _.random(1, 1000) };
       runs = _.concat([run], state.previousRuns);
       return { run: '', previousRuns: _.take(runs, PREV_RUN_COUNT) };
     default:
@@ -29,8 +29,12 @@ function reducer(state, action) {
   }
 }
 
+const THEMES = ['fruits', 'animals', 'favorite music'];
+
 function useRunState() {
-  return useReducer(reducer, INIT_STATE);
+  const theme = useMemo(() => THEMES[_.random(0, _.size(THEMES))], []);
+  const [state, dispatch] = useReducer(reducer, INIT_STATE);
+  return [{ ...state, theme }, dispatch];
 }
 
 export default useRunState;

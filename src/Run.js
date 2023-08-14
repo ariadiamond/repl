@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import Syntax from './Syntax';
+import HighlightableToken from './HighlightableToken';
 import './Run.css';
 
 function PrintSource(props) {
@@ -23,7 +24,9 @@ function PrintError(props) {
         <tbody>
           <tr>
             <td>Name:</td>
-            <td className="run-result__error__name">{error.name}</td>
+            <td className="run-result__error__name">
+              <HighlightableToken label={error.name} text={error.name} />
+            </td>
           </tr>
           <tr>
             <td>Message:</td>
@@ -38,26 +41,36 @@ function PrintError(props) {
 function getOutput(result) {
   switch(typeof result) {
     case 'string':
-      if (result === 'use strict') return 'undefined';
-      return <span className="string">"{result}"</span>;
+      if (result === 'use strict') return getOutput(undefined);
+      return <HighlightableToken text={'"' + result + '"'} label="string" />;
     case 'number':
-      return <span className="num">{result}</span>;
+      return <HighlightableToken text={result} label="num" />;
     case 'boolean':
-      return <span className="true">{result.toString()}</span>;
+      return <HighlightableToken text={result.toString()} label="true" />;
     case 'undefined':
-      return <span className="name">undefined</span>;
+      return <HighlightableToken text="undefined" label="undefined" />;
     case 'function':
       return <span className="function">function</span>;
     case 'object':
       if (_.isArray(result)) {
-        return <>[{_.map(
-          result,
-          (a, idx) => <>{idx !== 0 && ', '}{getOutput(a)}</>
-        )}]</>;
+        return (
+          <>
+            <HighlightableToken text="[" label="[" />
+            {_.map(result, (a, idx) => <>{idx !== 0 && ', '}{getOutput(a)}</>)}
+            <HighlightableToken text="]" label="]" />
+          </>
+        );
       }
-      if (_.isNil(result)) return <span className="null">null</span>;
-      // could be array, null
-      //
+      if (_.isNil(result)) return <HighlightableToken text="null" label="null" />;
+      if (_.isPlainObject(result)) {
+        return (
+          <>
+            <HighlightableToken text="{" label="object" />
+            {_.map(result, (v, k) => <p>{'  '}<HighlightableToken text={k} label="object_key"/>: {getOutput(v)}</p>)}
+            <HighlightableToken text="}" label="object" />
+          </>
+        );
+      }
     default:
       return 'Not sure how to display this';
   }

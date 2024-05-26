@@ -1,5 +1,11 @@
 # repl
-A webpage that runs JavaScript locally using `eval`
+A webpage that runs JavaScript locally using `eval`. Similar to the browser console or other REPLs
+(Read Evaluate Print Loop)/interactive interpreters such as node (for JavaScript), irb (for Ruby),
+or python interpreter (for Python). Adds
+[syntax highlighting on hover](./public/ReturnExplanation.png) of previous runs and
+[results](./public/SyntaxErrorExplanation.png) to explain various tokens.
+
+![Screenshot of webapp](./public/app.png)
 
 ## Use of `eval`
 `eval` is a largely disliked function in JavaScript because of the danger it poses to the browser
